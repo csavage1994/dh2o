@@ -1,7 +1,7 @@
 {
   "name": "dh2o",
   "version": "1.0.0",
-  "description": "Digital H2O code challenge",
+  "description": "Chicago crime report",
   "author": "csavage1994 <csavage1994@gmail.com>",
   "private": true,
   "scripts": {

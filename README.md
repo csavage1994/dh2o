@@ -1,6 +1,6 @@
 # dh2o
 
-> Digital H2O code challenge
+> Simple Vue application to show some visualizations of crime in Chicago
 
 ## Build Setup
 
