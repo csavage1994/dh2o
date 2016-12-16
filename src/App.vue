@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <siteHeader></siteHeader>
+    <contentSection></contentSection>
   </div>
 </template>
 
 <script>
 import SiteHeader from './components/SiteHeader';
+import ContentSection from './components/ContentSection';
 
 export default {
   name: 'app',
   components: {
-    SiteHeader
-  }
+    SiteHeader,
+    ContentSection,
+  },
 }
 </script>
 
