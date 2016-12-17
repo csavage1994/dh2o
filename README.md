@@ -8,6 +8,12 @@
 # install dependencies
 npm install
 
+# create auth.js file in root directory of this project
+touch auth.js
+
+# Add api key to auth.js
+module.exports = "YOUR_API_KEY_HERE";
+
 # serve with hot reload at localhost:8080
 npm run dev
 

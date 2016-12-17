@@ -21,7 +21,7 @@ export default {
 <style>
 #app {
   font-family: 'Roboto', sans-serif;
-  color: #2c3e50;
+  color: white;
 }
 body, h1, div, span {
   margin: 0;

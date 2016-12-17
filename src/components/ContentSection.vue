@@ -1,26 +1,58 @@
 <template>
   <div class="contentSection">
-    <graph class="graph" :chartData="chartData"></graph>
+    <graph class="graph" :chartData="barchartData[chartSelected]" :labels="barchartLabels[chartSelected]"></graph>
     <button v-on:click="change">Update chart</button>
   </div>
 </template>
 
 <script>
 import Graph from './Graph.js';
+import axios from 'axios';
+import token from '../../auth.js';
 
 export default {
+  beforeCreate() {
+    axios.get('https://data.cityofchicago.org/resource/6zsd-86xi.json', {
+        params: {
+          "$$app_token" : token,
+        }
+      })
+      .then((response) => {
+        let arrestData = [0,0];
+        let domesticData = [0,0];
+        response.data.map((item) => {
+          if(item.arrest) {
+            arrestData[0]++;
+          } else {
+            arrestData[1]++;
+          }
+          this.barchartData.push(arrestData);
+          if(item.domestic) {
+            domesticData[0]++;
+          } else {
+            domesticData[1]++;
+          }
+          this.barchartData.push(domesticData);
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  },
   name: 'contentSection',
   components: {
     Graph,
   },
   methods: {
     change: function() {
-      this.chartData = [11, 32, 1, 59];
+      this.chartSelected = (this.chartSelected === 0) ? 1 : 0;
     },
   },
   data () {
     return {
-      chartData: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11],
+      barchartData: [],
+      barchartLabels: [['Arrested', 'Not Arrested'], ['Domestic', 'Not Domestic']],
+      chartSelected: 0,
     }
   },
 }
@@ -30,8 +62,7 @@ export default {
 <style scoped>
 .contentSection {
   height: calc(100vh - 60px);
-  border: 1px solid black;
-  background-color: teal;
+  background-color: #fefcf9;
 }
 .graph {
   height: 300px;
